@@ -4,8 +4,6 @@ const router=express.Router();
 const mongoose=require('mongoose');
 router.get('/foodData',async (req,res)=>{
 try {
-    // console.log("here");
-    
     res.json([global.food_items,global.foodCategory]);
 } catch (err) {
     console.error(err)

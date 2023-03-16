@@ -3,37 +3,8 @@ const app=express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const mongoDb=require('./db')
-// const mongoose = require('mongoose');
-
-// const mongoDb = async () => {
-
-//     await mongoose.connect(process.env.MONGOURI,async (err, res) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log("connected to db");
-//             const fetch_data = await mongoose.connection.db.collection("food_items");
-//             // console.log(fetch_data);
-//             fetch_data.find({}).toArray(async (err, data) => {
-//                 const foodCategory=await mongoose.connection.db.collection("food_category");
-//                 foodCategory.find({}).toArray(async(err,catData)=>{
-//                     if (err) {
-//                         console.log(err);
-//                     }
-//                     else {
-//                         // console.log(data);
-//                         global.food_items=data;
-//                         global.foodCategory=catData;
-//                     }
-//                 })
-//             })
-//         }
-//     });
-// }
 
 
-// mongoDb();
 // app.use((req,res,next)=>{
 //     res.setHeader('Access-Control-Allow-Origin','http://localhost:3000');
 //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -46,16 +17,13 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
 app.use('/api',require('./routes/CreateUser'))
-// app.use('/api',require('./routes/DisplayData'))
+app.use('/api',require('./routes/DisplayData'))
 app.use('/api',require('./routes/OrderData'))
 
 app.get('/',(req,res)=>{
     res.send([global.food_items,global.foodCategory])
 })
-app.get('/api/foodData',(req,res)=>{
-    res.send([global.food_items,global.foodCategory])
 
-})
 app.listen(process.env.PORT,()=>{
     console.log(`Server Started at http://localhost:${process.env.PORT}`);
 })
