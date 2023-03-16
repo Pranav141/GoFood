@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '../components/Card'
 import Carousel from '../components/Carousel'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 // import {Link} from "react-router-dom";
-
+// require('dotenv').config();
 
 export default function Home() {
 
@@ -12,7 +12,7 @@ export default function Home() {
     const [foodData, setFoodData] = useState([]);
     const [search,setSearch]=useState("");
     const loadData = async () => {
-        let response = await fetch("http://localhost:5000/api/foodData", {
+        let response = await fetch(`https://go-food-one.vercel.app/api/foodData`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

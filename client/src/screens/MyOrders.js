@@ -8,7 +8,7 @@ export default function MyOrder() {
     const [address,setAddress]=useState({})
     const fetchMyOrder = async () => {
         // console.log(localStorage.getItem('userEmail'))
-        await fetch("http://localhost:5000/api/myOrderData", {
+        await fetch("https://go-food-one.vercel.app/api/myOrderData", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export default function MyOrder() {
         })
     }
     const fetchMyAddress=async ()=>{
-        await fetch("http://localhost:5000/api/myAddress",{
+        await fetch("https://go-food-one.vercel.app/api/myAddress",{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

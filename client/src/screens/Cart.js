@@ -12,7 +12,7 @@ export default function Cart() {
     }
     const handleCheckout=async ()=>{
         let userEmail = localStorage.getItem("userEmail");
-        let response = await fetch("http://localhost:5000/api/orderData", {
+        let response = await fetch("https://go-food-one.vercel.app/api/orderData", {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
