@@ -12,7 +12,7 @@ const mongoDb = async () => {
             const fetch_data = await mongoose.connection.db.collection("food_items");
             // console.log(fetch_data);
             fetch_data.find({}).toArray(async (err, data) => {
-                const foodCategory=await mongoose.connection.db.collection("food_category");
+                const foodCategory=await mongoose.connection.db.collection("food_categories");
                 foodCategory.find({}).toArray(async(err,catData)=>{
                     if (err) {
                         console.log(err);

@@ -2,9 +2,15 @@ const express = require('express');
 const router=express.Router();
 // const jwt=require('jsonwebtoken');
 const mongoose=require('mongoose');
+const FoodCategory = require('../models/FoodCategory');
+const FoodItem = require('../models/FoodItem');
+// const foodCategory = require('../models/FoodCategory')
+
 router.get('/foodData',async (req,res)=>{
 try {
-    res.json([global.food_items,global.foodCategory]);
+    const foodCategory= await FoodCategory.find();
+    const foodData=await FoodItem.find();
+    res.json([foodData,foodCategory]);
 } catch (err) {
     console.error(err)
 }
