@@ -1,9 +1,40 @@
 const express = require('express');
 const app=express();
 const bodyParser = require('body-parser');
-const mongoDb=require('./db');
 require('dotenv').config();
-mongoDb;
+
+const mongoose = require('mongoose');
+
+const mongoDb = async () => {
+
+    await mongoose.connect(process.env.MONGOURI,async (err, res) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("connected to db");
+            const fetch_data = await mongoose.connection.db.collection("food_items");
+            // console.log(fetch_data);
+            fetch_data.find({}).toArray(async (err, data) => {
+                const foodCategory=await mongoose.connection.db.collection("food_category");
+                foodCategory.find({}).toArray(async(err,catData)=>{
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        // console.log(data);
+                        global.food_items=data;
+                        global.foodCategory=catData;
+                    }
+                })
+            })
+        }
+    });
+}
+
+
+mongoDb();
+
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','http://localhost:3000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
