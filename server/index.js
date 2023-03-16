@@ -3,6 +3,7 @@ const app=express();
 const bodyParser = require('body-parser');
 const mongoDb=require('./db');
 require('dotenv').config();
+mongoDb;
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','http://localhost:3000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
